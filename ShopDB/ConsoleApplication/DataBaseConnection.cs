@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApplication
 {
     public class DataBaseConnection
     {
-        private const string _connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Godli\\OneDrive\\Desktop\\Projects\\ShopDB\\ConsoleApplication\\Database.mdf;Integrated Security=True";
+        private const string _connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\GitHub\\xml_to_database\\ShopDB\\ConsoleApplication\\Database.mdf;Integrated Security=True";
         private static SqlConnection _sqlConnection = null;
         public static SqlConnection Connect()
         {

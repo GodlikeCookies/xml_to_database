@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YgYyv28FZt9n/m23B5cam7ojnsiNVJRzeEpvC/Zcfl4b0uJkEz87ACsoPWrAujA8sUSRu8161SBSgJvifqRX7w==",
+  "dgSpecHash": "MWzMFaDxGR5RVGdLrJ61E8XRCfpZAGobxDrKNUBbA3l9Cg4LS0jtoq67Rs/UmUlXDhJJn3EcmIvZIKA6wqGztA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Godli\\OneDrive\\Desktop\\Projects\\ShopDB\\ConsoleApplication\\ConsoleApplication.csproj",
+  "projectFilePath": "C:\\GitHub\\xml_to_database\\ShopDB\\ConsoleApplication\\ConsoleApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Godli\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Godli\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

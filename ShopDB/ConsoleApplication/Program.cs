@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using System.Data.SqlClient;
 using System.Globalization;
 
@@ -25,7 +22,10 @@ namespace ConsoleApplication
                     string username = user.Element("fio").Value;
                     string email = user.Element("email").Value;
 
-                    string query = $"INSERT INTO Users (username, email) VALUES (@username, @email)";
+                    //check if user already exists
+
+                    string query = $"IF NOT EXISTS (SELECT 1 FROM Users WHERE username = @username AND email = @email)" +
+                                   $"INSERT INTO Users (username, email) VALUES (@username, @email)";
                     SqlCommand command = new SqlCommand(query, sqlConnection);
                     command.Parameters.AddWithValue("@username", username);
                     command.Parameters.AddWithValue("@email", email);
@@ -45,7 +45,8 @@ namespace ConsoleApplication
                     command = new SqlCommand(query, sqlConnection);
                     command.ExecuteNonQuery();
 
-                    query = $"INSERT INTO Purchases (purchase_id, user_id, purchase_date, purchase_sum) VALUES (@purchaseId, @userId, @purchaseDate, @purchaseSum)";
+                    query = $"IF NOT EXISTS (SELECT 1 FROM Purchases WHERE purchase_id = @purchaseId)" +
+                            $"INSERT INTO Purchases (purchase_id, user_id, purchase_date, purchase_sum) VALUES (@purchaseId, @userId, @purchaseDate, @purchaseSum)";
                     command = new SqlCommand (query, sqlConnection);
                     command.Parameters.AddWithValue("@purchaseId", purchaseId);
                     command.Parameters.AddWithValue("@userId", userId);
@@ -64,7 +65,8 @@ namespace ConsoleApplication
                         //product data
                         string name = product.Element("name").Value;
                         decimal price = decimal.Parse(product.Element("price").Value, CultureInfo.InvariantCulture);
-                        query = $"INSERT INTO Products (name, price) VALUES (@name, @price)";
+                        query = $"IF NOT EXISTS (SELECT 1 FROM Products WHERE name = @name AND price = @price)" +
+                                $"INSERT INTO Products (name, price) VALUES (@name, @price)";
                         command = new SqlCommand(query, sqlConnection);
                         command.Parameters.AddWithValue("@name", name);
                         command.Parameters.AddWithValue("@price", price);
@@ -77,7 +79,8 @@ namespace ConsoleApplication
 
                         //purchase details
                         int quantity = int.Parse(product.Element("quantity").Value);
-                        query = $"INSERT INTO PurchaseDetails (purchase_id, product_id, quantity) VALUES (@purchaseId, @productId, @quantity)";
+                        query = $"IF NOT EXISTS (SELECT 1 FROM PurchaseDetails WHERE purchase_id = @purchaseId)" +
+                                $"INSERT INTO PurchaseDetails (purchase_id, product_id, quantity) VALUES (@purchaseId, @productId, @quantity)";
                         command = new SqlCommand(query, sqlConnection);
                         command.Parameters.AddWithValue("@purchaseId", purchaseId);
                         command.Parameters.AddWithValue("@productId", productId);
