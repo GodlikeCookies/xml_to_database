@@ -79,7 +79,7 @@ namespace ConsoleApplication
 
                         //purchase details
                         int quantity = int.Parse(product.Element("quantity").Value);
-                        query = $"IF NOT EXISTS (SELECT 1 FROM PurchaseDetails WHERE purchase_id = @purchaseId)" +
+                        query = $"IF NOT EXISTS (SELECT 1 FROM PurchaseDetails WHERE product_id = @productId AND quantity = @quantity)" +
                                 $"INSERT INTO PurchaseDetails (purchase_id, product_id, quantity) VALUES (@purchaseId, @productId, @quantity)";
                         command = new SqlCommand(query, sqlConnection);
                         command.Parameters.AddWithValue("@purchaseId", purchaseId);
